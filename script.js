@@ -128,7 +128,10 @@
 //bravo
 
 
+
 // variables
+
+function jeu() {
 
 var chiffre;
 var random;
@@ -136,54 +139,65 @@ var nbMax;
 var compteur = 0;
 var nbCoups;
 
-// entrer nbCoups
-
-nbCoups = parseInt(prompt("Choissez un nombre de coups","000"));
-
 // entrer nbMax
 
 nbMax = parseInt(prompt("Choissez un chiffre max","000"));
 
-// choix du chiffre random + afficahge
+// fixation nbCoups
+
+nbCoups = nbMax / 10;
+
+// choix du chiffre random + affichage
 
 random = Math.floor(Math.random() * nbMax)+1;
 console.log(random);
 
-// boucle de jeu
+// boucle de jeu + comptage nbcoups
 
 for (i = 0; i < nbCoups; i++) {
 
-    chiffre = parseInt(prompt("Choissez un chiffre entre 0 et votre nombre max choisis précédemment","000"));
+    chiffre = parseInt(prompt("Choissez un chiffre entre 0 et "+ nbMax,"000"));
 
-     if (chiffre<random){
-            console.log("Trop petit");
-            compteur++;
-    } else if (chiffre>random){
-            console.log("Trop grand");
-            compteur++;
+    while (chiffre<0 || chiffre>nbMax) {
+        
+    chiffre = parseInt(prompt("Conard, je t'ai dit entre 0 et "+ nbMax,"000"));
+    }   
+
+    // if (chiffre<0 || chiffre>nbMax) {
+
+    if (chiffre < random) {
+        console.log("Trop petit");
+        compteur++;
+        } else if (chiffre>random) {
+        console.log("Trop grand");
+        compteur++;
         } else {
-            console.log("Bravo");
-            compteur++;
+        console.log("Bravo");
+        compteur++;
+        break;
         }
-    }
+}
 
-//afficahge com et nbCoups
+//affichage com et nbcoups
 
 if (chiffre == random) {
 
     if (compteur == 1) {
         console.log(compteur," Vous êtes le boss !!!");
     } else if (compteur<=5) {
-        console.log(compteur," Vous êtes fort !!");
+        console.log(compteur," Vous êtes trop fort !!");
         } else if (compteur<=10) {
-            console.log(compteur," Vous êtes pas mal !");
+            console.log(compteur," Vous êtes pas si mal !");
             } else if (compteur<=15) {
                 console.log(compteur," Vous êtes bof");
             } else {
                 console.log(compteur, " Trop nul, Try again !");
             }
 } else {
-    console.log("Perdu, nbcoups dépassé !!!")
+               console.log(compteur," Perdu, nombre d'essai dépassé !!!")
+    
+}
 }
 
-       
+jeu ()
+
